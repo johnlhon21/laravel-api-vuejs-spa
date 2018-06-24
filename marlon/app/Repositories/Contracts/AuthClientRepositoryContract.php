@@ -11,11 +11,11 @@ namespace App\Repositories\Contracts;
 
 interface AuthClientRepositoryContract
 {
-    public function refreshToken($userId, $data);
+    public function refreshToken(int $userId, array $data);
 
-    public function getByUserId($userId);
+    public function getByUserId(int $userId);
 
-    public function getByApiKey($apiKey);
+    public function getByApiKey(string $apiKey);
 
-    public function getByToken($token);
+    public function getByToken(string $token);
 }

@@ -26,6 +26,4 @@ class UserRepository extends AbstractRepository implements UserRepositoryContrac
             ->whereEmail($email)
             ->first();
     }
-
-
 }

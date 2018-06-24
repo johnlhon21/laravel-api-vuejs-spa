@@ -9,6 +9,7 @@
 namespace App\Services;
 
 
+use App\Repositories\Contracts\AuthClientRepositoryContract;
 use App\Repositories\Contracts\UserRepositoryContract;
 use App\Services\Contracts\UserServiceContract;
 
@@ -16,33 +17,50 @@ class UserService implements UserServiceContract
 {
     protected $userRepository;
 
-    public function __construct(UserRepositoryContract $userRepositoryContract)
+    protected $authClientRepository;
+
+    public function __construct(
+        UserRepositoryContract $userRepositoryContract,
+        AuthClientRepositoryContract $authClientRepositoryContract
+    )
     {
         $this->userRepository = $userRepositoryContract;
-    }
-
-    public function create(array $data)
-    {
-        // TODO: Implement create() method.
-    }
-
-    public function update(int $userId, array $data)
-    {
-        // TODO: Implement update() method.
-    }
-
-    public function delete(int $userId, array $data)
-    {
-        // TODO: Implement delete() method.
+        $this->authClientRepository = $authClientRepositoryContract;
     }
 
     public function paginate(int $number)
     {
-        // TODO: Implement get() method.
+        return $this->userRepository->paginate($number);
+    }
+
+    public function first(int $userId)
+    {
+        return $this->userRepository->getById($userId);
+    }
+
+
+    public function create(array $data)
+    {
+        return $this->userRepository->create($data);
+    }
+
+    public function update(int $userId, array $data)
+    {
+        return $this->userRepository->update($userId, $data);
+    }
+
+    public function delete(int $userId)
+    {
+        return $this->userRepository->delete($userId);
+    }
+
+    public function createAuthClient(array $data)
+    {
+        return $this->authClientRepository->create($data);
     }
 
     public function all()
     {
-
+        return $this->userRepository->getAll();
     }
 }
