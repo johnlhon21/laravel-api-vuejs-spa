@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProfilesTable extends Migration
+class CreateAuthClientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,12 @@ class CreateProfilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('profiles', function (Blueprint $table) {
+        Schema::create('auth_clients', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->string('first_name');
-            $table->string('last_name');
-            $table->string('address');
-            $table->string('postal_code');
-            $table->string('contact_number');
+            $table->integer('user_id')->unique();
+            $table->string('api_key')->nullable();
+            $table->text('token')->nullable();
+            $table->string('token_expire')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ class CreateProfilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('profiles');
+        Schema::dropIfExists('auth_clients');
     }
 }
