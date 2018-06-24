@@ -36,6 +36,11 @@ class JwtAuthorization extends AbstractAuthorization
     public function authorize(): bool
     {
         $this->apiKey = $this->decode();
+
+        if ($this->apiKey == null) {
+            return false;
+        }
+
         return $this->authClientRepository->getByApiKey($this->apiKey) != null;
     }
 

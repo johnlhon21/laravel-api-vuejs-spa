@@ -16,4 +16,13 @@ use Illuminate\Http\Request;
 Route::post('/login', 'Auth\Api\LoginController@doLogin');
 
 Route::get('/users', 'Auth\Api\UserController@getUsers');
+Route::delete('/users', 'Auth\Api\UserController@deleteUsers');
+
+
+Route::group(['prefix' => 'user',  'middleware' => 'auth.custom'], function() {
+    Route::post('/', 'Auth\Api\UserController@createUser');
+    Route::get('{id}', 'Auth\Api\UserController@getUser');
+    Route::delete('{id}', 'Auth\Api\UserController@deleteUser');
+    Route::put('{id}', 'Auth\Api\UserController@updateUser');
+});
 

@@ -21,29 +21,29 @@ class AuthClientRepository extends AbstractRepository implements AuthClientRepos
         parent::__construct($model);
     }
 
-    public function getByUserId($userId)
+    public function getByUserId(int $userId)
     {
         return $this->model
             ->whereUserId($userId)
             ->first();
     }
 
-    public function getByApiKey($apiKey)
+    public function getByApiKey(string $apiKey)
     {
         return $this->model
             ->whereApiKey($apiKey)
             ->first();
     }
 
-    public function getByToken($token)
+    public function getByToken(string $token)
     {
         return $this->model
             ->whereToken($token)
             ->first();
     }
 
-    public function refreshToken($id, $data)
+    public function refreshToken(int $id, array $data)
     {
-        return parent::update($id, $data);
+        return $this->update($id, $data);
     }
 }
