@@ -1,26 +1,34 @@
-#Laravel & VueJS API Simple CRUD using Single Page Application#
-This is a simple CRUD Application using Laravel & VueJs & SPA `Single Page Application` and JWT Authorization for the security all API endpoints.
+## Laravel & VueJS API Simple CRUD using Single Page Application
+This is a simple CRUD Application using Laravel & VueJs & SPA `Single Page Application` and JWT Authorization for the security of all API endpoints.
 ## Installation
 
-- Laravel Server
+## Laravel Server
   - Setup Vagrant Homestead or Docker
   - Refer Database connection to `.env` file
+  - run `composer install`
   - run `php artisan migrate`
-- Node Modules
+  - run `php artisan db:seed`
+## Node Modules
   - run `npm-install --no-bin-links`  
   - run `npm install --global cross-env` if required to install
   - run `npm run dev`
-- Unit Testing
+## Unit Testing
   - run `./vendor/bin/phpunit --testsuite Unit`
-- Authorization
+  - TestCase file
+    - `Tests\Unit\UserServiceTest.php`
+    - `Tests\Unit\AuthenticationTest.php`
+## Authorization
   - This application uses `JWT` authorization for API endpoints.
   - Tokens, Open the file `Authentication.php`
-    - Set the expiration using `Carbon Object` `$this->token->expires()->addDay(1)->timestamp`
+    - Set the expiration using `Carbon Object` 
+      ```php 
+      $this->token->expires()->addDay(1)->timestamp
+      ```
     - In this application the Token were stored in `Vuex Persist Store` to automatically add the headers for every request.
     - If using `Postman` add the following headers for every request  
       - `Authorization: Bearer TokenGenerated`
       - `Content-Type : application/json`
-- Endpoints
+## Endpoints
   ```php
     Route::post('/login', 'Auth\Api\LoginController@doLogin');
     
@@ -35,11 +43,8 @@ This is a simple CRUD Application using Laravel & VueJs & SPA `Single Page Appli
         Route::put('{id}', 'Auth\Api\UserController@updateUser');
     });
   ```   
-  - Token Generated will be returned if the user were is authenticated
+  - Token Generated will be returned if the user were successfully authenticated.
 
-###Notes from developer
+## Note from developer
 
 I mainly used the `passport` oauth authentication for large applications especially with Laravel. For this project I created a **Custom API** authentication / authorization using [JWT](https://jwt.io/) `(JSON Web Token)` to show some coding stuff (OOP) instead of just installing.
- 
-  
-
