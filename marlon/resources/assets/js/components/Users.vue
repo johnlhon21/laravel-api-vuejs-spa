@@ -187,7 +187,7 @@
                 }
             },
             deleteUsers() {
-       
+
                 let deleteUsers = confirm("Are you sure you want to continue?");
 
                 if (deleteUsers) {
