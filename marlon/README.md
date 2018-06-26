@@ -44,6 +44,10 @@ This is a simple CRUD Application using Laravel & VueJs & SPA `Single Page Appli
     });
   ```   
   - Token Generated will be returned if the user were successfully authenticated.
+  ## Default User & Password
+   - Please see `UserSeeder.php`
+   - email : `johnlhon21@gmail.com`
+   - password : `password`
 
 ## Note from developer
 
