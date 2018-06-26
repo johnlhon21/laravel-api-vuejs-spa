@@ -1,4 +1,4 @@
-#Laravel & VueJS API Simple CRUD using Single Page Application#
+## Laravel & VueJS API Simple CRUD using Single Page Application
 This is a simple CRUD Application using Laravel & VueJs & SPA `Single Page Application` and JWT Authorization for the security all API endpoints.
 ## Installation
 
@@ -41,7 +41,7 @@ This is a simple CRUD Application using Laravel & VueJs & SPA `Single Page Appli
   ```   
   - Token Generated will be returned if the user were successfully authenticated.
 
-**Note from developer**
+## Note from developer
 
 I mainly used the `passport` oauth authentication for large applications especially with Laravel. For this project I created a **Custom API** authentication / authorization using [JWT](https://jwt.io/) `(JSON Web Token)` to show some coding stuff (OOP) instead of just installing.
  
