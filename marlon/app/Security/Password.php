@@ -10,7 +10,7 @@ class Password
         return Hash::make($str);
     }
 
-    public function check(string $str, $hashed): bool
+    public function isValidPassword($str, $hashed): bool
     {
         return Hash::check($str, $hashed);
     }

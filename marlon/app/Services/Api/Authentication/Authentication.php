@@ -71,36 +71,25 @@ class Authentication implements AuthenticationContract
 
         $user = $this->userRepository->getCredentials($email);
 
-        Log::info('credentials', [$user]);
 
         if ($user == null) {
             throw new EmailNotFoundException();
         }
 
-        if (! $this->hasValidPassword($password, $user->password)) {
+        if (! $this->password->isValidPassword($password, $user->password)) {
             throw new InvalidPasswordException();
         }
 
         return $this->createToken($user);
     }
 
-    /**
-     * Checks valid passsword
-     * @param $password
-     * @param $hash
-     * @return bool
-     */
-    protected function hasValidPassword($password, $hash): bool
-    {
-        return $this->password->check($password, $hash);
-    }
 
     /**
      * Returns the Token generated
      * @param User
      * @return array
      */
-    private function createToken(User $user)
+    public function createToken(User $user)
     {
         $this->token->setApiKey($user->authClient->api_key)->generate();
 
