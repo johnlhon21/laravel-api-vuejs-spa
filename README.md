@@ -20,7 +20,10 @@ This is a simple CRUD Application using Laravel & VueJs & SPA `Single Page Appli
 ## Authorization
   - This application uses `JWT` authorization for API endpoints.
   - Tokens, Open the file `Authentication.php`
-    - Set the expiration using `Carbon Object` `$this->token->expires()->addDay(1)->timestamp`
+    - Set the expiration using `Carbon Object` 
+      ```php 
+      $this->token->expires()->addDay(1)->timestamp
+      ```
     - In this application the Token were stored in `Vuex Persist Store` to automatically add the headers for every request.
     - If using `Postman` add the following headers for every request  
       - `Authorization: Bearer TokenGenerated`
