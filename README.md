@@ -2,21 +2,21 @@
 This is a simple CRUD Application using Laravel & VueJs & SPA `Single Page Application` and JWT Authorization for the security of all API endpoints.
 ## Installation
 
-# Laravel Server
+## Laravel Server
   - Setup Vagrant Homestead or Docker
   - Refer Database connection to `.env` file
   - run `php artisan migrate`
   - run `php artisan db:seed`
-# Node Modules
+## Node Modules
   - run `npm-install --no-bin-links`  
   - run `npm install --global cross-env` if required to install
   - run `npm run dev`
-# Unit Testing
+## Unit Testing
   - run `./vendor/bin/phpunit --testsuite Unit`
   - TestCase file
     - `Tests\Unit\UserServiceTest.php`
     - `Tests\Unit\AuthenticationTest.php`
-# Authorization
+## Authorization
   - This application uses `JWT` authorization for API endpoints.
   - Tokens, Open the file `Authentication.php`
     - Set the expiration using `Carbon Object` `$this->token->expires()->addDay(1)->timestamp`
@@ -24,7 +24,7 @@ This is a simple CRUD Application using Laravel & VueJs & SPA `Single Page Appli
     - If using `Postman` add the following headers for every request  
       - `Authorization: Bearer TokenGenerated`
       - `Content-Type : application/json`
-# Endpoints
+## Endpoints
   ```php
     Route::post('/login', 'Auth\Api\LoginController@doLogin');
     
