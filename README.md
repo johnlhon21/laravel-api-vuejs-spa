@@ -5,6 +5,7 @@ This is a simple CRUD Application using Laravel & VueJs & SPA `Single Page Appli
 ## Laravel Server
   - Setup Vagrant Homestead or Docker
   - Refer Database connection to `.env` file
+  - run `composer install`
   - run `php artisan migrate`
   - run `php artisan db:seed`
 ## Node Modules
