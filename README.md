@@ -36,7 +36,7 @@ This is a simple CRUD Application using Laravel & VueJs & SPA `Single Page Appli
         Route::put('{id}', 'Auth\Api\UserController@updateUser');
     });
   ```   
-  - Token Generated will be returned if the user were is authenticated
+  - Token Generated will be returned if the user were successfully authenticated.
 
 **Note from developer**
 
