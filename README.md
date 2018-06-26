@@ -1,5 +1,5 @@
 ## Laravel & VueJS API Simple CRUD using Single Page Application
-This is a simple CRUD Application using Laravel & VueJs & SPA `Single Page Application` and JWT Authorization for the security all API endpoints.
+This is a simple CRUD Application using Laravel & VueJs & SPA `Single Page Application` and JWT Authorization for the security of all API endpoints.
 ## Installation
 
 - Laravel Server
