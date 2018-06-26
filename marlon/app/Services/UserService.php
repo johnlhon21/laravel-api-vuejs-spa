@@ -69,13 +69,20 @@ class UserService implements UserServiceContract
         return $this->userRepository->create($data);
     }
 
+
     /**
      * @param int $userId
      * @param array $data
      * @return mixed
+     * @throws EmailAlreadyExistException
      */
     public function update(int $userId, array $data)
     {
+        $exist = $this->userRepository->emailExist($data['email']);
+
+        if ($exist) {
+            throw new EmailAlreadyExistException();
+        }
         return $this->userRepository->update($userId, $data);
     }
 
