@@ -12,4 +12,8 @@ namespace App\Repositories\Contracts;
 interface UserRepositoryContract
 {
     public function getCredentials($email);
+
+    public function emailExist($email);
+
+    public function deleteUsers(array $userIds);
 }

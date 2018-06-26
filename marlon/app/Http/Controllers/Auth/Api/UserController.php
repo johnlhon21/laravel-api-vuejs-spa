@@ -15,6 +15,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Security\Password;
 use App\Services\Contracts\UserServiceContract;
+use App\Services\Exceptions\EmailAlreadyExistException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -37,7 +38,7 @@ class UserController extends Controller
     {
         try {
 
-            $users = $this->userService->paginate(15);
+            $users = $this->userService->paginate(10);
 
             return UserResource::collection($users);
 
@@ -92,9 +93,15 @@ class UserController extends Controller
 
             return new UserResource($user);
 
+        } catch (EmailAlreadyExistException $exception) {
+
+            Log::error($exception->getTraceAsString());
+
+            return response()->json(['message' => $exception->getMessage(), 'data' => null], 200);
+
         } catch (\Exception $exception) {
 
-            Log::error($exception->getMessage());
+            Log::error($exception->getTraceAsString());
 
             return response()->json(['error' => 'Error creating user.', 'data' => null], 500);
 
@@ -145,6 +152,23 @@ class UserController extends Controller
             Log::error($exception->getMessage());
 
             return response()->json(['error' => 'Error updating user.', 'data' => null], 500);
+        }
+    }
+
+    public function deleteUsers(Request $request)
+    {
+        try {
+
+            $this->userService->deleteUsers($request->post('user_ids'));
+
+            return response()->json(['message' => 'Users deleted.', 'data' => null], 200);
+
+        } catch (\Exception $exception) {
+
+            Log::error($exception->getMessage());
+
+            return response()->json(['error' => 'Error deleting user.', 'data' => null], 500);
+
         }
     }
 }

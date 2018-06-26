@@ -11,6 +11,7 @@ namespace App\Repositories;
 
 use App\Repositories\Contracts\RepositoryContract;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Log;
 
 abstract class AbstractRepository implements RepositoryContract
 {
@@ -53,6 +54,6 @@ abstract class AbstractRepository implements RepositoryContract
 
     public function paginate(int $number)
     {
-        return $this->model->paginate($number);
+        return $this->model->orderBy('created_at', 'desc')->paginate($number);
     }
 }

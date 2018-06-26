@@ -68,7 +68,7 @@ class Authorization
         return response()->json([
             'status' => 401,
             'message' => 'Error : Unauthorized',
-            'description' => 'Invalid authorization token'
+            'description' => 'Invalid authorization or token already expired.'
         ], 401);
     }
 }

@@ -26,4 +26,16 @@ class UserRepository extends AbstractRepository implements UserRepositoryContrac
             ->whereEmail($email)
             ->first();
     }
+
+    public function emailExist($email)
+    {
+        return $this->model
+            ->whereEmail($email)
+            ->first();
+    }
+
+    public function deleteUsers(array $userIds)
+    {
+        return $this->model->whereIn('id', $userIds)->delete();
+    }
 }

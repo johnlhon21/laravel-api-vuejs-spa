@@ -25,4 +25,5 @@ interface UserServiceContract
 
     public function all();
 
+    public function deleteUsers(array $userIds);
 }

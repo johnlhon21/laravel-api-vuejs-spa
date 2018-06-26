@@ -18,4 +18,6 @@ interface AuthClientRepositoryContract
     public function getByApiKey(string $apiKey);
 
     public function getByToken(string $token);
+
+    public function multipleDeleteByUserId(array $userId);
 }
