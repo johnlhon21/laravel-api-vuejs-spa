@@ -10,6 +10,7 @@ namespace App\Services\Api\Authentication;
 
 
 use App\Client\Token;
+use App\Http\Resources\UserResource;
 use App\Repositories\Contracts\AuthClientRepositoryContract;
 use App\Repositories\Contracts\UserRepositoryContract;
 use App\Security\Password;
@@ -18,6 +19,7 @@ use App\Services\Api\Exceptions\InvalidPasswordException;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class Authentication implements AuthenticationContract
 {
@@ -69,6 +71,8 @@ class Authentication implements AuthenticationContract
 
         $user = $this->userRepository->getCredentials($email);
 
+        Log::info('credentials', [$user]);
+
         if ($user == null) {
             throw new EmailNotFoundException();
         }
@@ -76,7 +80,6 @@ class Authentication implements AuthenticationContract
         if (! $this->hasValidPassword($password, $user->password)) {
             throw new InvalidPasswordException();
         }
-
 
         return $this->createToken($user);
     }
@@ -93,7 +96,7 @@ class Authentication implements AuthenticationContract
     }
 
     /**
-     * Returns Token generator
+     * Returns the Token generated
      * @param User
      * @return array
      */
@@ -107,6 +110,8 @@ class Authentication implements AuthenticationContract
         ];
 
         $this->token->save($user->id, $data);
+
+        $data['user'] = new UserResource($user);
 
         return $data;
     }

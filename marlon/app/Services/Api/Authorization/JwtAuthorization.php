@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Log;
  */
 class JwtAuthorization extends AbstractAuthorization
 {
+    protected $message;
     /**
      * Default ALG
      */
@@ -41,7 +42,13 @@ class JwtAuthorization extends AbstractAuthorization
             return false;
         }
 
-        return $this->authClientRepository->getByApiKey($this->apiKey) != null;
+        $accessToken = $this->authClientRepository->getByApiKey($this->apiKey);
+
+        if ($accessToken != null) {
+            return ! $this->isTokenExpire($accessToken->token_expire);
+        }
+
+        return false;
     }
 
     /**

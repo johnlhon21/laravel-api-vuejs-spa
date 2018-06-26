@@ -21,6 +21,10 @@ class AuthClientRepository extends AbstractRepository implements AuthClientRepos
         parent::__construct($model);
     }
 
+    /**
+     * @param int $userId
+     * @return mixed
+     */
     public function getByUserId(int $userId)
     {
         return $this->model
@@ -28,6 +32,10 @@ class AuthClientRepository extends AbstractRepository implements AuthClientRepos
             ->first();
     }
 
+    /**
+     * @param string $apiKey
+     * @return mixed
+     */
     public function getByApiKey(string $apiKey)
     {
         return $this->model
@@ -35,6 +43,10 @@ class AuthClientRepository extends AbstractRepository implements AuthClientRepos
             ->first();
     }
 
+    /**
+     * @param string $token
+     * @return mixed
+     */
     public function getByToken(string $token)
     {
         return $this->model
@@ -42,8 +54,25 @@ class AuthClientRepository extends AbstractRepository implements AuthClientRepos
             ->first();
     }
 
+    /**
+     * @param int $id
+     * @param array $data
+     * @return mixed
+     */
     public function refreshToken(int $id, array $data)
     {
-        return $this->update($id, $data);
+        $authClient = $this->getByUserId($id);
+        if ($authClient) {
+            return $authClient->update($data);
+        }
+        return false;
+    }
+
+    /**
+     * @param array $userIds
+     */
+    public function multipleDeleteByUserId(array $userIds)
+    {
+        $this->model->whereIn('user_id', $userIds)->delete();
     }
 }

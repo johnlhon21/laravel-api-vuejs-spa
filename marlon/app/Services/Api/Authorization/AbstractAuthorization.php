@@ -7,7 +7,9 @@ use App\Client\Token;
 use App\Models\AuthClient;
 use App\Repositories\AuthClientRepository;
 use App\Services\Api\Exceptions\InvalidHeaderContentException;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 /**
  * Class AbstractAuthorization
@@ -45,7 +47,6 @@ abstract class AbstractAuthorization
     /**
      * AbstractAuthorization constructor.
      * @param Request $request
-     * @throws InvalidHeaderContentException
      */
     public function __construct(Request $request)
     {
@@ -54,11 +55,8 @@ abstract class AbstractAuthorization
         $this->secretKey = Token::getSecretKey();
         $this->authClientRepository = new AuthClientRepository(new AuthClient());
 
-        if (! $this->isJsonRequest()) {
-            throw new InvalidHeaderContentException();
-        }
-
         $this->authorizationHeader = $this->headers->get('authorization');
+
         $this->parseToken();
     }
 
@@ -80,6 +78,15 @@ abstract class AbstractAuthorization
         $contentType = $this->headers->get('content-type');
 
         return ($contentType !== null && $contentType == 'application/json');
+    }
+
+    /**
+     * @param $timestamp
+     * @return bool
+     */
+    protected function isTokenExpire($timestamp)
+    {
+        return Carbon::now()->timestamp > $timestamp;
     }
 
     /**
