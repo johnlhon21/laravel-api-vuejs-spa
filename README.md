@@ -14,8 +14,8 @@ This is a simple CRUD Application using Laravel & VueJs & SPA `Single Page Appli
 - Unit Testing
   - run `./vendor/bin/phpunit --testsuite Unit`
   - TestCase file
-    - Tests\Unit\UserServiceTest.php
-    - Tests\Unit\AuthenticationTest.php
+    - `Tests\Unit\UserServiceTest.php`
+    - `Tests\Unit\AuthenticationTest.php`
 - Authorization
   - This application uses `JWT` authorization for API endpoints.
   - Tokens, Open the file `Authentication.php`
