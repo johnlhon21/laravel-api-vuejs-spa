@@ -52,6 +52,3 @@ This is a simple CRUD Application using Laravel & VueJs & SPA `Single Page Appli
 ## Note from developer
 
 I mainly used the `passport` oauth authentication for large applications especially with Laravel. For this project I created a **Custom API** authentication / authorization using [JWT](https://jwt.io/) `(JSON Web Token)` to show some coding stuff (OOP) instead of just installing.
- 
-  
-
