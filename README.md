@@ -6,6 +6,7 @@ This is a simple CRUD Application using Laravel & VueJs & SPA `Single Page Appli
   - Setup Vagrant Homestead or Docker
   - Refer Database connection to `.env` file
   - run `php artisan migrate`
+  - run `php artisan db:seed`
 - Node Modules
   - run `npm-install --no-bin-links`  
   - run `npm install --global cross-env` if required to install
