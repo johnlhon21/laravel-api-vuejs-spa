@@ -9,7 +9,7 @@ This is a simple CRUD Application using Laravel & VueJs & SPA `Single Page Appli
   - run `php artisan migrate`
   - run `php artisan db:seed`
 ## Node Modules
-  - run `npm-install --no-bin-links`  
+  - run `npm install --no-bin-links`  
   - run `npm install --global cross-env` if required to install
   - run `npm run dev`
 ## Unit Testing
